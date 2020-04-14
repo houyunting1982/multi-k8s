@@ -1,0 +1,20 @@
+apiVersion: cert-manager.io/v1alpha2
+kind: Certificate
+metadata:
+  name: parklily-com-tls
+spec:
+  secretName: parklily-com
+  issuerRef:
+    name: letsencrypt-prod
+    kind: ClusterIssuer
+  commonName: parklily.com
+  dnsNames:
+    - parklily.com
+    - www.parklily.com
+  acme:
+    config:
+      - http01:
+          ingressClass: nginx
+        domains:
+          - parklily.com
+          - www.parklily.com
